@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_mutations
+    columns:
+      - name: pdb_id
+        tests:
+          - not_null
+
+      - name: ddg
+        tests:
+          - not_null

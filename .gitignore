@@ -12,3 +12,10 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# dbt
+**/dbt.log
+**/logs/
+# dbt artifacts
+**/target/
+**/dbt_packages/
