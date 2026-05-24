@@ -3,6 +3,6 @@ SELECT
     wild_type,
     mutation,
     position,
-    ddg
+    ddG
 FROM raw_mutations
-WHERE ddg IS NOT NULL
+WHERE ddG IS NOT NULL

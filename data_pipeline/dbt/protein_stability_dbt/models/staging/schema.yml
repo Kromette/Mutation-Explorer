@@ -7,6 +7,6 @@ models:
         tests:
           - not_null
 
-      - name: ddg
+      - name: ddG
         tests:
           - not_null

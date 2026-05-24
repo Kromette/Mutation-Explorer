@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: int_mutation_features
+    description: Engineered biological features for ML training
+
+    columns:
+      - name: hydrophobic_wild_type
+        tests:
+          - not_null

@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: mart_ml_dataset
+    description: Final ML-ready dataset for protein stability prediction
