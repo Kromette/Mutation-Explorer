@@ -11,9 +11,9 @@ from stmol import showmol
 import pandas as pd
 from app.utils.model_loader import load_model
 from app.utils.feature_engineering import build_features
-from app.utils.viewer import render_protein
+from app.utils.viewer import render_mutation
 
-conn = duckdb.connect("data_pipeline/dbt/protein_stability_dbt/dev.duckdb")
+conn = duckdb.connect("data_pipeline/protein_stability_dbt/dev.duckdb")
 
 
 proteins = conn.execute("""
@@ -37,11 +37,11 @@ selected_protein_id = proteins[proteins["protein_name"] == selected_protein]["pd
 max_position = int(proteins[proteins["protein_name"] == selected_protein]["sequence_length"].iloc[0])
 
 mutations = mutations[mutations["protein_name"] == selected_protein]
-
-st.write(f"Protein length: {max_position} aa")
-st.write(f"PDB ID: {selected_protein_id}")
-st.write("Known mutations for this protein:")
-st.dataframe(mutations[["mutation", "position", "ddG"]])
+with st.expander("Protein informations"):
+    st.write(f"Protein length: {max_position} aa")
+    st.write(f"PDB ID: {selected_protein_id}")
+    st.write("Known mutations for this protein:")
+    st.dataframe(mutations[["mutation", "position", "ddG"]])
 
 
 
@@ -52,21 +52,30 @@ position = st.number_input(
     value=int(max_position / 2)
 )
 
+wild_type_aa = mutations[mutations["protein_name"] == selected_protein]["wild_type"].iloc[0]
+
 amino_acids = [
     "A", "V", "L", "I",
     "D", "E", "K", "R",
     "S", "T", "Y", "F"
 ]
 
-wild_type = st.selectbox(
+col1, col2 = st.columns(2)
+
+with col1:
+    wild_type = st.selectbox(
     "Wild type amino acid",
-    amino_acids
+    wild_type_aa
 )
 
-mutation = st.selectbox(
+with col2:
+    mutation = st.selectbox(
     "Mutated amino acid",
     amino_acids
 )
+
+
+
 
 # normalize to the first pdb id in case multiple ids are concatenated with '|'
 pdb_id_only = str(selected_protein_id).split("|")[0]
@@ -75,7 +84,7 @@ pdb_path = ROOT / "data" / "raw" / "fireprot_upload" / "pdbs" / f"{pdb_id_only}.
 if not pdb_path.exists():
     st.error(f"PDB file not found: {pdb_path.name}")
 else:
-    view = render_protein(str(pdb_path))
+    view = render_mutation(str(pdb_path), position)
     showmol(view, height=600, width=800)
 
 
