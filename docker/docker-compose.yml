@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17
+
+    container_name: fireprot-postgres
+
+    environment:
+      POSTGRES_USER: fireprot
+      POSTGRES_PASSWORD: fireprot
+      POSTGRES_DB: fireprotdb
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

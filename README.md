@@ -42,3 +42,12 @@ Predicting mutation impact is therefore an important challenge in:
 - protein engineering,
 - biotechnology,
 - and computational biology.
+
+# Database schema
+
+The project uses a PostgreSQL version of FireProtDB. (https://loschmidt.chemi.muni.cz/fireprotdb/download/)
+
+Main relational structure:
+![Schema](docs/fireprotdb_public.png)
+
+
