@@ -48,6 +48,6 @@ Predicting mutation impact is therefore an important challenge in:
 The project uses a PostgreSQL version of FireProtDB. (https://loschmidt.chemi.muni.cz/fireprotdb/download/)
 
 Main relational structure:
-![Schema](doc/fireprotdb_public.png)
+![Schema](doc/fireprotdb-public.png)
 
 
