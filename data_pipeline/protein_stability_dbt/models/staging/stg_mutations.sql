@@ -1,10 +1,6 @@
-SELECT
-    pdb_id,
-    wild_type,
-    protein_name,
-    mutation,
-    position,
-    ddG,
-    sequence
-FROM raw_mutations
-WHERE ddG IS NOT NULL
+{{ config(materialized='table') }}
+
+SELECT *
+FROM read_parquet(
+    '{{ var("export_dir") }}/stg_mutations.parquet'
+)

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+
+  - name: exports
+
+    tables:
+
+      - name: stg_mutations
+
+      - name: stg_proteins

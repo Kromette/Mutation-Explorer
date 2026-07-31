@@ -13,16 +13,22 @@ from app.utils.model_loader import load_model
 from app.utils.feature_engineering import build_features
 from app.utils.viewer import render_mutation
 
-conn = duckdb.connect("data_pipeline/protein_stability_dbt/dev.duckdb")
+conn = duckdb.connect("data/ml/dev.duckdb")
 
 
 proteins = conn.execute("""
 SELECT * FROM mart_proteins
 """).fetchdf()
 
+st.dataframe(proteins)
+
 mutations = conn.execute("""
-SELECT * FROM stg_mutations
+SELECT * FROM mart_ml_dataset
 """).fetchdf()
+
+sample_mutations = mutations.head()
+
+st.dataframe(sample_mutations)
 
 st.title("🧬 Protein Stability Explorer")
 

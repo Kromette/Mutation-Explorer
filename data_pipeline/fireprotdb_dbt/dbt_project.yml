@@ -1,0 +1,25 @@
+name: "fireprotdb_dbt"
+version: "1.0.0"
+config-version: 2
+
+profile: "fireprotdb_postgres"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  fireprotdb_dbt:
+
+    # Couche de préparation des données FireProtDB
+    staging:
+      +materialized: table
+
