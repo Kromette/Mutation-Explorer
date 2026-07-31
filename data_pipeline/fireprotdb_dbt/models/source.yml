@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: fireprotdb
+    schema: public
+    tables:
+      - name: substitution
+      - name: mutant
+      - name: protein
+      - name: protein_sequence
+      - name: sequence

@@ -1,6 +1,6 @@
 # Data
-data/raw/
-data/processed/
+data/raw
+data/ml/dev.duckdb
 
 # Python
 __pycache__/

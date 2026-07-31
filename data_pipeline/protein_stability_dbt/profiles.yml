@@ -1,0 +1,12 @@
+protein_stability_dbt:
+  target: dev
+
+  outputs:
+
+    dev:
+
+      type: duckdb
+
+      path: ../../data/ml/dev.duckdb
+
+      threads: 4

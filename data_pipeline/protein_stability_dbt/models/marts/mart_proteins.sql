@@ -3,3 +3,4 @@ SELECT DISTINCT
     protein_name,
     sequence_length
 FROM {{ ref('int_proteins') }}
+WHERE sequence_length IS NOT NULL
